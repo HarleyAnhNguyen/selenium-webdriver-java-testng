@@ -1,6 +1,7 @@
 package webdriver;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -18,9 +19,12 @@ public class Topic_12_Checkbox_Radio {
     String projectPath = System.getProperty("user.dir");
     String osName = System.getProperty("os.name");
 
+    JavascriptExecutor jsExecutor;
+
     @BeforeClass
     public void beforeClass() {
         driver = new FirefoxDriver();
+        jsExecutor = (JavascriptExecutor) driver;
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
@@ -193,6 +197,56 @@ public class Topic_12_Checkbox_Radio {
         }
         sleepInSeconds(1);
         Assert.assertTrue(driver.findElement(By.cssSelector("input[value='Heart Attack']")).isSelected());
+
+    }
+
+    @Test
+    public void TC_05_CustomerChkBox_RadioBtn() {
+        driver.get("https://login.ubuntu.com/");
+        WebElement rdbtnNewUser = driver.findElement(By.cssSelector("input#id_new_user"));
+        //1. Dung the Input de click -> Fail
+        //Dung the input de verify -> Pass
+
+
+        //2. Dung 1 the khac input ddeer click -> Pass
+        //Dung the do verify -> Fail
+        // isSelected() -> dung cho input/option
+        //rdbtnNewUser = driver.findElement(By.cssSelector("label.new-user"));
+
+        //3. Dung 1 the khac input ddeer click
+        //Dung input de verify
+//        WebElement rdbtnNewUserLabel = driver.findElement(By.cssSelector("label.new-user"));
+//        rdbtnNewUserLabel.click();
+//        Assert.assertTrue(rdbtnNewUser.isSelected());
+
+        //4. khong dung ham click() Selenium, ma dung ham click cua JS, van dung the input
+        jsExecutor.executeScript("arguments[0].click();",rdbtnNewUser);
+        Assert.assertTrue(rdbtnNewUser.isSelected());
+
+        WebElement chckboxAccept = driver.findElement(By.cssSelector("input#id_accept_tos"));
+        jsExecutor.executeScript("arguments[0].click();",chckboxAccept);
+        Assert.assertTrue(chckboxAccept.isSelected());
+
+    }
+
+    @Test
+    public void TC_06_CustomerChkBox_RadioBtn() {
+        driver.get("https://docs.google.com/forms/d/e/1FAIpQLSfiypnd69zhuDkjKgqvpID9kwO29UCzeCVrGGtbNPZXQok0jA/viewform");
+        sleepInSeconds(4);
+        WebElement radioHCM = driver.findElement(By.xpath("//div[@aria-label='Hồ Chí Minh']"));
+        WebElement chckbxMyQuang = driver.findElement(By.xpath("//div[@aria-label='Mì Quảng']"));
+
+        radioHCM.click();
+        chckbxMyQuang.click();
+        //cach 1
+        //Assert.assertTrue(driver.findElement(By.xpath("//div[@aria-label='Hồ Chí Minh' and @aria-checked = 'true']")).isDisplayed());
+
+        //cach 2
+        Assert.assertEquals(radioHCM.getAttribute("aria-checked"),"true");
+
+        Assert.assertEquals(chckbxMyQuang.getAttribute("aria-checked"),"true");
+
+
 
     }
 
