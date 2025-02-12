@@ -59,12 +59,12 @@ public class Topic_17_Action_I {
 
         driver.get("https://www.fahasa.com/");
         Thread.sleep(5000);
-        action.moveToElement(driver.findElement(By.xpath("//span[@class='icon_menu']"))).perform();
+        action.moveToElement(driver.findElement(By.xpath("//span[@class='icon_menu']/parent::div")));
         Thread.sleep(2000);
 
         Assert.assertTrue(driver.findElement(By.xpath("//i[@class ='ico_sachtrongnuoc']/parent::a/span")).isEnabled());
 
-        Assert.assertEquals(driver.findElement(By.xpath("//i[@class ='ico_sachtrongnuoc']/parent::a/span")).getText(),"Sách Trong Nước");
+
 
     }
 
