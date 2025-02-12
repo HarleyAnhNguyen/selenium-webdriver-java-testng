@@ -183,9 +183,11 @@ public class Topic_06_WebElement_Exercise {
 
         driver.findElement(By.cssSelector("input#email")).sendKeys("alohaptit@gmail.com");
 
-//        driver.findElement(By.xpath("//div[@class='signup-wrap lastUnit mc-login-content ']")).click();
+        driver.findElement(By.xpath("//div[@class='signup-wrap lastUnit mc-login-content ']")).click();
 
-//        sleepInSeconds(5);
+        sleepInSeconds(5);
+
+        Assert.assertEquals(driver.findElement(By.cssSelector("input#new_username")).getAttribute("value").toString(),"alohaptit@gmail.com");
 
 
 
