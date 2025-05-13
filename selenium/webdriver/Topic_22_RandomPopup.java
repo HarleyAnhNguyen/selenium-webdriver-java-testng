@@ -41,6 +41,7 @@ public class Topic_22_RandomPopup {
                     "//div[contains(@class,'lepopup-fadeIn')]" +
                     "//a[@onclick='return lepopup_close();']")).click();
             Thread.sleep(3000);
+            Assert.assertEquals(driver.findElements(newletterPopup).size(),0);
         }
         //ko hien thi thi action tiep
         System.out.println("-----------------DONT GO TO IF--------------");
@@ -83,6 +84,7 @@ public class Topic_22_RandomPopup {
             System.out.println("-----------------GO TO IF--------------");
             driver.findElement(By.cssSelector("button.close")).click();
             Thread.sleep(3000);
+
         }
         //ko hien thi thi action tiep
         System.out.println("-----------------DONT GO TO IF--------------");
