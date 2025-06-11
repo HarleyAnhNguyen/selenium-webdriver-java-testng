@@ -85,7 +85,23 @@ public class Topic_31_Explicit {
         explicitWait.until(ExpectedConditions.attributeToBeNotEmpty(driver.findElement(By.cssSelector("")),"class"));
 
         //Wait cho 1 element có thuộc tính ở trong DOM bằng giá trị nào đó
+        explicitWait.until(ExpectedConditions.domAttributeToBe(driver.findElement(By.cssSelector("")),
+                "baseURI","https://automationfc.github.io/dynamic-loading/"));
+
+        //Wait cho 1 element có thuộc tính ở trong DOM bằng giá trị nào đó
         explicitWait.until(ExpectedConditions.domAttributeToBe(driver.findElement(By.cssSelector("")),"baseURI","https://automationfc.github.io/dynamic-loading/"));
+
+        explicitWait.until(ExpectedConditions.domPropertyToBe(driver.findElement(By.cssSelector("")),"innerText","Start"));
+
+        //Wait cho 1 element đã được chọn thành công (Checkbox/ Radio/Dropdown Item)
+        explicitWait.until(ExpectedConditions.elementToBeSelected(By.cssSelector("")));
+
+        //Wait cho 1 element đã được chọn thành công
+        explicitWait.until(ExpectedConditions.elementSelectionStateToBe(By.cssSelector(""),true));
+
+        //Wait cho 1 element chưa được chọn thành công
+        explicitWait.until(ExpectedConditions.elementSelectionStateToBe(By.cssSelector(""),false));
+
 
     }
 
