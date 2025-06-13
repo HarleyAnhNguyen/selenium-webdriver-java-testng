@@ -145,7 +145,7 @@ public class Topic_31_Explicit_Exc {
                 (By.cssSelector("div#filemanager_loading"))));
 
         Thread.sleep(5000);
-        By inputBy = By.cssSelector("input[type='file']");
+        By inputBy = By.cssSelector("button[id$='uploadFiles']>span");
 
         //Upload file
         driver.findElement(inputBy).sendKeys(vuongGiaPath + "\n" + doAnPath + "\n" + boThuiPath);
