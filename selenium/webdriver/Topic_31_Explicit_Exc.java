@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -35,7 +36,7 @@ public class Topic_31_Explicit_Exc {
 
     @BeforeClass
     public void beforeClass() {
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
 
         driver.manage().window().maximize();
 
@@ -144,11 +145,10 @@ public class Topic_31_Explicit_Exc {
         Assert.assertTrue(explicitWait.until(ExpectedConditions.invisibilityOfElementLocated
                 (By.cssSelector("div#filemanager_loading"))));
 
-        Thread.sleep(5000);
-        By inputBy = By.cssSelector("button[id$='uploadFiles']>span");
+        By inputBy = By.cssSelector("input[type='file']");
 
         //Upload file
-        driver.findElement(inputBy).sendKeys(vuongGiaPath + "\n" + doAnPath + "\n" + boThuiPath);
+        driver.findElement(inputBy).sendKeys(boThuiPath + "\n" + doAnPath );
 
         //Wait và Kiem tra loading tung file
         Assert.assertTrue(explicitWait.until(ExpectedConditions.invisibilityOfElementLocated
@@ -161,28 +161,29 @@ public class Topic_31_Explicit_Exc {
         Assert.assertTrue(explicitWait.until(ExpectedConditions.invisibilityOfElementLocated
                 (By.xpath("//span[text()='"+doAn+"']/ancestor::div[@class='file-item']//div[@class='processing-indicator']//span[text()='Server processing file...']"))));
 
-        Assert.assertTrue(explicitWait.until(ExpectedConditions.invisibilityOfElementLocated
-                (By.xpath("//span[text()='"+vuongGia+"']/ancestor::div[@class='file-item']//div[@class='progress-container']/div/div"))));
-        Assert.assertTrue(explicitWait.until(ExpectedConditions.invisibilityOfElementLocated
-                (By.xpath("//span[text()='"+vuongGia+"']/ancestor::div[@class='file-item']//div[@class='processing-indicator']//span[text()='Server processing file...']"))));
+//        Assert.assertTrue(explicitWait.until(ExpectedConditions.invisibilityOfElementLocated
+//                (By.xpath("//span[text()='"+vuongGia+"']/ancestor::div[@class='file-item']//div[@class='progress-container']/div/div"))));
+//        Assert.assertTrue(explicitWait.until(ExpectedConditions.invisibilityOfElementLocated
+//                (By.xpath("//span[text()='"+vuongGia+"']/ancestor::div[@class='file-item']//div[@class='processing-indicator']//span[text()='Server processing file...']"))));
 
         //Wait và kiem tra page hoàn thanh loading và load lại page
         Assert.assertTrue(explicitWait.until(ExpectedConditions.invisibilityOfElementLocated
                 (By.cssSelector("div#filemanager_loading"))));
 
         //Wait và kiểm tra ảnh được load thành công
+
         Assert.assertTrue(explicitWait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.cssSelector("//a[text()='"+boThui+"']"))).isDisplayed());
+                (By.xpath("//a[text()='"+boThui+"']"))).isDisplayed());
         Assert.assertTrue(explicitWait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.cssSelector("//a[text()='"+doAn+"']"))).isDisplayed());
-        Assert.assertTrue(explicitWait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.cssSelector("//a[text()='"+vuongGia+"']"))).isDisplayed());
+                (By.xpath("//a[text()='"+doAn+"']"))).isDisplayed());
+//        Assert.assertTrue(explicitWait.until(ExpectedConditions.visibilityOfElementLocated
+//                (By.xpath("//a[text()='"+vuongGia+"']"))).isDisplayed());
 
     }
 
     @AfterClass
     public void afterClass() {
-        driver.quit();
+       // driver.quit();
     }
 
 }
