@@ -88,15 +88,16 @@ public class Topic_31_Explicit_Exc {
         driver.get("https://automationfc.github.io/dynamic-loading/");
         driver.findElement(By.xpath("//button[text() ='Start']")).click();
 
-        //Visible (dành cho 1 element sau được xuất hiện)
-        explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div#finish>h4")));
-
+        //Visible (dành cho 1 element sap được xuất hiện)
+        WebElement helloText = explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div#finish>h4")));
+        Assert.assertEquals(helloText.getText(),"Hello World!");
         //Invisible (dành cho 1 element sắp biến mất/ kì vọng biến mất đi)
-        explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div#loading")));
+        boolean loadinngIconStatus = explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div#loading")));
+        Assert.assertFalse(loadinngIconStatus);
 
         //Text
-        explicitWait.until(ExpectedConditions.textToBe(By.cssSelector("div#finish>h4"),"Hello World!"));
-
+        boolean helloTextStatus = explicitWait.until(ExpectedConditions.textToBe(By.cssSelector("div#finish>h4"),"Hello World!"));
+        Assert.assertTrue(helloTextStatus);
         Assert.assertEquals(driver.findElement(By.cssSelector("div#finish>h4")).getText(),"Hello World!");
 
     }
@@ -114,7 +115,7 @@ public class Topic_31_Explicit_Exc {
         Assert.assertTrue(explicitWait.until(ExpectedConditions.textToBe(
                 By.cssSelector("span#ctl00_ContentPlaceholder1_Label1"),"No Selected Dates to display.")));
 
-        //Wait and click elemet
+        //Wait and click element
         explicitWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td/a[text()='13']"))).click();
 
         //Wait and verify  cho ajax loading invisible
@@ -169,8 +170,10 @@ public class Topic_31_Explicit_Exc {
         //Wait và kiem tra page hoàn thanh loading và load lại page
         Assert.assertTrue(explicitWait.until(ExpectedConditions.invisibilityOfElementLocated
                 (By.cssSelector("div#filemanager_loading"))));
+        Thread.sleep(500);
 
         //Wait và kiểm tra ảnh được load thành công
+        explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a.linkSuccessCard"))).click();
 
         Assert.assertTrue(explicitWait.until(ExpectedConditions.visibilityOfElementLocated
                 (By.xpath("//a[text()='"+boThui+"']"))).isDisplayed());
@@ -183,7 +186,7 @@ public class Topic_31_Explicit_Exc {
 
     @AfterClass
     public void afterClass() {
-       // driver.quit();
+        driver.quit();
     }
 
 }
