@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="NopCommerce" verbose="1">
+    <test name="Run on Firefox">
+        <parameter name="browser" value="firefox"></parameter>
+        <classes>
+            <class name="javaTester.Topic_06_Condition_Statement"/>
+        </classes>
+    </test>
+    <test name="Run on Chrome">
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
+            <class name="javaTester.Topic_06_Condition_Statement"/>
+        </classes>
+    </test>
+    <test name="Run on Edge">
+        <parameter name="browser" value="edge"></parameter>
+        <classes>
+            <class name="javaTester.Topic_06_Condition_Statement"/>
+        </classes>
+    </test>
+</suite>
