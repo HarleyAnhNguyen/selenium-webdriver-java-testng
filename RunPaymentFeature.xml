@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Payment" verbose="1">
+    <test name="Run on Firefox">
+        <parameter name="browser" value="Firefox"></parameter>
+        <classes>
+            <class name="testng.Topic_11_TimeOut"/>
+        </classes>
+    </test>
+
+</suite>

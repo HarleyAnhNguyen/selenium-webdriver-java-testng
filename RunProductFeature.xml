@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Product" verbose="1">
+    <test name="Run on Firefox">
+        <parameter name="browser" value="Firefox"></parameter>
+        <classes>
+            <class name="webdriver.Topic_06_Exercise_Browser"/>
+        </classes>
+    </test>
+</suite>
