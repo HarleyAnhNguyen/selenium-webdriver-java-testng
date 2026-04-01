@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="NopCommerce" verbose="1">
+    <suite-files>
+        <suite-file path="RunPaymentFeature.xml" />
+        <suite-file path="RunProductFeature.xml" />
+    </suite-files>
+
+</suite>
