@@ -1,11 +1,15 @@
 package javaTester;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class Topic_06_Condition_Statement {
     WebDriver driver;
@@ -22,6 +26,33 @@ public class Topic_06_Condition_Statement {
             // sai thi bo qua
             System.out.println("Go to if");
 
+        }
+
+         driver = new FirefoxDriver();
+
+        //Element luon luon co trong DOM du pop-up hien thi hay ko
+        WebElement salePopup = driver.findElement(By.id(""));
+        if(salePopup.isDisplayed()){
+
+        }
+
+        //Element ko co trong DOM khi pop-up ko hien thi
+        List<WebElement> salPopups = driver.findElements(By.id(""));
+        //check element ko hien thi
+        if (salPopups.size()>0 && salPopups.get(0).isDisplayed()){
+
+        }
+
+
+        //Uncheck to checkbox
+        WebElement laguagesCheckbox = driver.findElement(By.id(""));
+        if(laguagesCheckbox.isSelected()){
+            laguagesCheckbox.click();
+        }
+
+        //Check to checkbox
+        if(!laguagesCheckbox.isSelected()){
+            laguagesCheckbox.click();
         }
 
     }

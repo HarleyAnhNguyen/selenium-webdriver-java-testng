@@ -76,7 +76,7 @@ public class Topic_11_TimeOut {
 
 
 
-    @AfterClass
+    @AfterClass (alwaysRun = true)
     public void afterClass() {
         driver.quit();
     }
